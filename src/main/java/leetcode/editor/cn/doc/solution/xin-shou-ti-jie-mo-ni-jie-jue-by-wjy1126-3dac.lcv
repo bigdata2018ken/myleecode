@@ -1,0 +1,81 @@
+### 解题思路
+
+从后向前遍历，寻找不被删除的字符，进行比较。
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public int getIndex(String str,int i){
+        int skip=0;
+        while(i >= 0){
+            char ch=str.charAt(i);
+            if(ch=='#'){
+                skip++;
+                i--;
+            }else{
+                if(skip==0) {
+                    return i;
+                } else {
+                    skip--;
+                    i--;
+                }  
+            }
+        }
+        return -1;
+    }
+    public boolean backspaceCompare(String s, String t) {
+        int ret1 = s.length();
+        int ret2 = t.length();
+        while(ret1 >= 0 && ret2 >= 0){
+            ret1=getIndex(s,ret1-1);
+            ret2=getIndex(t,ret2-1);
+            if(ret1 >= 0 && ret2 >= 0) {
+                if(s.charAt(ret1) != t.charAt(ret2)) {
+                    return false;
+                }
+            } else if(ret1>=0||ret2>=0) {
+                return false;
+            }
+        }  
+        return true;
+    }
+}
+```
+
+### 解题思路
+
+- StringBuffer模拟行为
+- 遇到字符则加入，遇到#在能删的情况下，就删除
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+       String s1=stack(s);
+       String s2=stack(t);
+       return s1.equals(s2);
+    }
+    public String stack(String str){
+        StringBuffer sb = new StringBuffer();
+        char c;
+        for(int i=0;i<str.length();i++){
+            c=str.charAt(i);
+            if(c!='#') {
+                sb.append(c);
+            }else{
+                if(sb.length()>0) {
+                    sb.deleteCharAt(sb.length()-1);
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
+```
+

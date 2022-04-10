@@ -1,0 +1,27 @@
+### 解题思路
+
+- slow指针一次走一步，fast指针一次走两步。
+- 没有结点或者只有一个结点的情况可以直接返回。
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow,fast;
+        slow = head.next;
+        fast = head.next;
+        while(fast.next!=null && fast.next.next!=null) {
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow;
+    }
+}
+```
+

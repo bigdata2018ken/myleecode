@@ -1,0 +1,22 @@
+* 
+
+```
+class Solution {
+    private ListNode rev(ListNode pre, ListNode node) {
+        if (node.next == null) {
+            node.next = pre;
+            return node;
+        }
+        ListNode tmp = node.next;
+        node.next = pre;
+        return rev(node, tmp);
+    }
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        return rev(null, head);
+    }
+}
+```
+
