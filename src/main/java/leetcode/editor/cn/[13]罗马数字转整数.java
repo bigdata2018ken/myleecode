@@ -78,7 +78,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution13 {
 
     public int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
